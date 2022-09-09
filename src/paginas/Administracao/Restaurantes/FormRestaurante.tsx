@@ -1,8 +1,16 @@
 import { Button, TextField } from "@mui/material"
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 
 const FormRestaurante = () => {
+    const parametros = useParams()
+    useEffect(() => {
+        if (parametros.id) {
+            axios.get(`http://localhost:8000/api/v2/restaurantes/${parametros.id}/`)
+                .then(resposta => setNomeRestaurante(resposta.data.nome))
+        }
+    }, [])
     const [nomeRestaurante, setNomeRestaurante] = useState('')
     const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
