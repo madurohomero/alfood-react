@@ -12,12 +12,12 @@ const AdministracaoRestaurantes = () => {
     }, [])
 
 
-    const  excluir = (restauranteAhSerExcluido: IRestaurante) => {
+    const excluir = (restauranteAhSerExcluido: IRestaurante) => {
         axios.delete(`http://localhost:8000/api/v2/restaurantes/${restauranteAhSerExcluido.id}/`)
-        .then(() =>{
-            const listaRestaurante = restaurantes.filter(restaurante => restaurante.id != restauranteAhSerExcluido.id)
-            setRestaurantes([...listaRestaurante])
-        })
+            .then(() => {
+                const listaRestaurante = restaurantes.filter(restaurante => restaurante.id != restauranteAhSerExcluido.id)
+                setRestaurantes([...listaRestaurante])
+            })
     }
     return (
         <TableContainer component={Paper}>
